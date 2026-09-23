@@ -15,3 +15,10 @@
 未验证真实租户配置、企业开票资质、税局认证状态或真实票文件。
 
 Odoo 20 集成测试由 Solutions `mommy_fapiao_kingdee` 记录，独立于本 SDK 的离线测试计数。
+
+## 2026-09-23 沙箱连通性检查
+
+- 用户提供的沙箱网页登录已验证可用，并从公开数据中心接口确认了该租户的 `accountId`。
+- 同一租户的 `/api/getAppToken.do` 可访问；空参数 POST 返回缺少第三方 `appId`／`appSecret`。
+- SDK 新增只读 `examples/sandbox_smoke.py`，支持鉴权及可选单张查询，不调用开票接口；31 项离线测试仍通过。
+- 当前尚无该沙箱的独立 API 应用凭据，因此 **没有完成 SDK 真实鉴权、查询或开票测试**。

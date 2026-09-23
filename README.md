@@ -71,6 +71,18 @@ pytest
 python -m build
 ```
 
+取得沙箱的独立 API 凭据后，可用只读脚本先验证 SDK 鉴权；网页登录密码不能替代
+`appId` 和 `appSecret`。从项目根目录运行，环境变量至少设置
+`PIAOZONE_BASE_URL`、`PIAOZONE_APP_ID`、`PIAOZONE_APP_SECRET`、
+`PIAOZONE_ACCOUNT_ID`、`PIAOZONE_USER`，手机号登录另设 `PIAOZONE_USER_TYPE=Mobile`：
+
+```bash
+python examples/sandbox_smoke.py
+```
+
+如有已知的原开票流水号和销方税号，再设置 `PIAOZONE_SYSTEM_CODE` 并传入
+`--serial-no`、`--seller-taxpayer-id` 做单张查询。脚本不会开票，也不会打印 token、密钥或发票内容。
+
 离线测试不调用税局、不使用真实税票。没有金蝶租户凭据时，不能据此认定沙箱联调完成。
 截至 2026-09-19，检索官方文档及公开代码索引未找到匹配旗舰版接口的可复用 Python SDK；
 官方提供 HTTP、Postman 与 Java 加解密示例，因此单独封装本库。
